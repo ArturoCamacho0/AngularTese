@@ -1,0 +1,32 @@
+.form_hero{
+    display: flex;
+    flex-flow: column;
+}
+
+label{
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+input[type="text"],
+input[type="number"]{
+    padding: 5px;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+.container{
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+td, th{
+    border-bottom: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    padding: 5px;
+}
