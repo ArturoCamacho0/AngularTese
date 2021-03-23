@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HEROES } from 'src/app/services/mock-heroes';
 import { Hero } from '../../models/Hero';
 
 @Component({
@@ -7,20 +8,39 @@ import { Hero } from '../../models/Hero';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  hero: Hero = {
-    id: 1,
-    name: 'Spiderman',
-    age: 23,
-    power: 'Aracnido',
-    identity: 'Peter Parker',
-    company: 'Marvel'
-  }
+  public heroes: Hero[];
+  public hero: Hero;
+  public status: boolean = false;
 
   constructor(){
-
+    this.heroes = HEROES;
   }
 
   ngOnInit(): void {
+  }
+
+  onClick(hero){
+    this.hero = hero;
+    this.status = true;
+  }
+
+  onCancel(){
+    this.status = false;
+  }
+
+  onSave(changes){
+    for(let hero of this.heroes){
+      if(changes.id === hero.id){
+        hero.name = changes.name;
+        hero.age = changes.age;
+        hero.power = changes.power;
+        hero.identity = changes.identity;
+        hero.company = changes.company;
+
+        this.status = false;
+        break;
+      }
+    }
   }
 
 }

@@ -1,39 +1,66 @@
-<div class="container" *ngIf="hero">
-    <h2>Superheroes</h2>
-    <br>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Edad</th>
-            <th>Superpoder</th>
-            <th>Identidad</th>
-            <th>Compañia</th>
-        </tr>
-        <tr>
-            <td>{{ hero.id }}</td>
-            <td>{{ hero.name }}</td>
-            <td>{{ hero.age }}</td>
-            <td>{{ hero.power }}</td>
-            <td>{{ hero.identity }}</td>
-            <td>{{ hero.company}}</td>
-        </tr>
-    </table>
+<div class="container" *ngIf="heroes">
+    <div class="table-heroes" *ngIf="!status">
+        <h2>Superheroes</h2>
+        <br>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Superpoder</th>
+                <th>Identidad</th>
+                <th>Compañia</th>
+            </tr>
+            <tr *ngFor="let hero of heroes" class="line-hero">
+                <td>{{ hero.id }}</td>
+                <td>{{ hero.name }}</td>
+                <td>{{ hero.age }}</td>
+                <td>{{ hero.power }}</td>
+                <td>{{ hero.identity }}</td>
+                <td>{{ hero.company}}</td>
+                <td><button class="edit-button" (click)="onClick(hero)">Editar</button></td>
+            </tr>
+        </table>
+    </div>
 
-    <div class="form_hero">
-        <label for='name'>Nombre del superheroe</label>
-        <input type="text" [(ngModel)]="hero.name" name="name">
+    <div class="heroes" *ngIf="hero && status">
+        <div class="card">
+            <h3>{{ hero.name }}</h3>
+            <span class="property-hero">Edad</span>
+            <p>{{ hero.age }} años</p>
 
-        <label for="age">Edad del superheroe</label>
-        <input type="number" name="age" [(ngModel)]="hero.age">
+            <span class="property-hero">Superpoder</span>
+            <p>{{ hero.power }}</p>
 
-        <label for='power'>Poder del superheroe</label>
-        <input type="text" [(ngModel)]="hero.power" name="power">
+            <span class="property-hero">Identidad</span>
+            <p>{{ hero.identity }}</p>
 
-        <label for='identity'>Identidad del superheroe</label>
-        <input type="text" [(ngModel)]="hero.identity" name="identity">
+            <span class="property-hero">Compañia</span>
+            <p>{{ hero.company }}</p>
+        </div>
+    </div>
 
-        <label for='company'>Compañia del superheroe</label>
-        <input type="text" [(ngModel)]="hero.company" name="company">
+    <div class="heroes" *ngIf="status">
+        <div class="form_hero">
+            <label for='name'>Nombre del superheroe</label>
+            <input type="text" [(ngModel)]="hero.name" name="name">
+
+            <label for="age">Edad del superheroe</label>
+            <input type="number" name="age" [(ngModel)]="hero.age">
+
+            <label for='power'>Poder del superheroe</label>
+            <input type="text" [(ngModel)]="hero.power" name="power">
+
+            <label for='identity'>Identidad del superheroe</label>
+            <input type="text" [(ngModel)]="hero.identity" name="identity">
+
+            <label for='company'>Compañia del superheroe</label>
+            <input type="text" [(ngModel)]="hero.company" name="company">
+
+            <div class="buttons-group">
+                <button class="button-red button" (click)="onCancel()">Cancelar</button>
+                <button class="button-green button" (click)="onSave(hero)">Guardar</button>
+            </div>
+        </div>
     </div>
 </div>
