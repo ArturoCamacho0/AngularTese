@@ -43,4 +43,8 @@ export class HeroesComponent implements OnInit {
     }
   }
 
+  viewHero(hero: Hero){
+    this.hero = hero;
+  }
+
 }

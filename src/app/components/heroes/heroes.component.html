@@ -19,6 +19,7 @@
                 <td>{{ hero.identity }}</td>
                 <td>{{ hero.company}}</td>
                 <td><button class="edit-button" (click)="onClick(hero)">Editar</button></td>
+                <td><button class="edit-button" (click)="viewHero(hero)">Detalles</button></td>
             </tr>
         </table>
     </div>
@@ -64,3 +65,5 @@
         </div>
     </div>
 </div>
+
+<app-hero-detail [hero]="hero"></app-hero-detail>
