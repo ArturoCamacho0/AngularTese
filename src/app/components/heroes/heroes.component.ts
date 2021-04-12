@@ -1,22 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { HEROES } from 'src/app/services/mock-heroes';
 import { Hero } from '../../models/Hero';
+import { HeroService } from '../../services/hero.service';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  styleUrls: ['./heroes.component.css'],
+  providers: [
+    HeroService
+  ]
 })
 export class HeroesComponent implements OnInit {
   public heroes: Hero[];
   public hero: Hero;
   public status: boolean = false;
 
-  constructor(){
-    this.heroes = HEROES;
+  constructor(
+    private _heroService: HeroService
+  ){
+    this.getHeroes();
   }
 
   ngOnInit(): void {
+  }
+
+  getHeroes(){
+    this._heroService.getHeroes().subscribe(
+      response => {
+        this.heroes = response;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   onClick(hero){
